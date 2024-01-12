@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Display PlayLists Page</title>
+<link rel="stylesheet" th:href="@{/css/displayPlayLists.css}">
+</head>
+
+<style type="text/css">
+	iframe {
+		height: 100px;
+		width: 500px;
+		}
+</style>
+
+<body>
+<div>
+	<h1>All PlayLists</h1>
+	<br />
+	
+	<form>
+	<table border=1>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Song</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="plist:${allPlayLists}">
+				<td th:text="${plist.name}"> </td>
+				<td>
+					<ul>
+						<li th:each="song: ${plist.songs}">
+						<span th:text="${song.name}"></span>
+							<audio controls>
+					 	 		<source th:src="${song.link}" type="audio/mpeg">
+					 		</audio>
+					 	</li>	
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</form>
+</div>
+</body>
+</html>
